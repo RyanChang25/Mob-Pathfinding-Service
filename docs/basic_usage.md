@@ -1,6 +1,13 @@
-This shows the basic functionality of Dungeon Generation Service. Again, this will not work if you do not have the specific dungeon chunks and folder structure. If interested in the actual implementation, feel free to message me on Twitter or Discord.
+## Basic Usage
 
 ```
-DungeonGenerationService:Generate(10, 3, 60, Vector3.new(90, -1, -240)) -->>: # of Rooms, Chunk Size, Floor Size, Start Position
--- Yep that's it! Just call one function to generate the dungeon!
+--(Remember to name your mob according! And place under Replicated Storage. In this example mine is called "Amber Golem".)
+
+local NewMob = MobService.new("Amber Golem", 2, 50, 6, 12, true, workspace.Spawners:FindFirstChild("Spawner"..tostring(math.random(1,4))).CFrame)
+-->>: Create Mob Object. (Name, Level, HP, Radius, Height, canJump, spawnCFrame)
+-->>: Spawn CFrame is randomized between 4 parts in the workspace. These act as the spawners for the mobs.
+NewMob:SetProperties() -->>: Set Object Properties
+NewMob:SetAnimations() -->>: Set Object Animations (If any)
+
+MobService.PathfindServiceLoop() -->>: Call to initilize the pathfind loop (Should only be called once)
 ```
